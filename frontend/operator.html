@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNo2 - Command Center</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="operator.css">
+</head>
+
+<body>
+
+    <div class="modal-overlay" id="cancelModal">
+        <div class="modal-box">
+            <h3>Cancel Assignment</h3>
+            <p>Are you sure you want to cancel this assignment?</p>
+            <div class="modal-actions">
+                <button class="btn-modal-cancel" onclick="closeCancelModal()">No, Keep it</button>
+                <button class="btn-modal-confirm" id="confirmCancelBtn">Yes, Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div style="display:flex; align-items:center; gap: 15px;">
+            <button onclick="toggleLeftPanel()"
+                style="background:none; border:none; color:white; cursor:pointer; font-size:20px; line-height:1;"
+                title="Toggle Left Panel">☰</button>
+            <h1>PNo2 - Command Center</h1>
+        </div>
+        <div class="navbar-right">
+            <span id="welcomeMsg"></span>
+            <button class="btn-logout" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <div class="layout">
+
+        <!-- Left Panel -->
+        <div class="left-panel" id="leftPanel">
+            <div class="left-panel-tabs">
+                <button class="left-tab active" onclick="switchLeftTab('ranking')">Volunteer Ranking</button>
+                <button class="left-tab" onclick="switchLeftTab('coverage')">Resource Coverage</button>
+                <button class="left-tab" onclick="switchLeftTab('gaps')">Zone Gaps</button>
+            </div>
+
+            <div class="left-panel-content" id="rankingView">
+                <div id="rankingList">
+                    <p class="loading">Loading...</p>
+                </div>
+            </div>
+
+            <div class="left-panel-content" id="coverageView" style="display: none;">
+                <div id="coverageList">
+                    <p class="loading">Loading...</p>
+                </div>
+            </div>
+
+            <div class="left-panel-content" id="gapsView" style="display: none;">
+                <div id="gapsList">
+                    <p class="loading">Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="map-section">
+            <div id="map"></div>
+            <button class="filter-critical-btn" id="filterCriticalBtn" onclick="toggleCriticalFilter()">Filter Most
+                Critical Requests</button>
+
+            <button class="critical-zones-btn" id="criticalZonesBtn" onclick="toggleCriticalZonesPopup()">
+                ⚠️ Critical Zones Alert
+            </button>
+
+            <div class="critical-zones-popup" id="criticalZonesPopup">
+                <div class="critical-zones-popup-header">
+                    Critical Zones (<10% Supply) <button class="critical-zones-popup-close"
+                        onclick="toggleCriticalZonesPopup()">×</button>
+                </div>
+                <div class="critical-zones-popup-content" id="criticalZonesContent"></div>
+            </div>
+
+            <div class="map-legend">
+                <div><span class="legend-dot dot-red"></span> Aid Requests</div>
+                <div><span class="legend-dot dot-blue"></span> Resources</div>
+                <div><span class="legend-dot" style="background:#aaa"></span> Unavailable</div>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="side-panel">
+
+            <!-- Assignment Builder -->
+            <div class="assignment-builder">
+                <h3>Create Assignment</h3>
+                <p style="font-size:11px; color:#888; margin-bottom:10px;">Click a marker or list item to select.</p>
+
+                <div class="selection-row">
+                    <div class="selection-box" id="selectedRequestBox">
+                        <div class="box-label">Aid Request</div>
+                        <div class="box-value empty" id="selectedRequestText">None selected</div>
+                    </div>
+                    <div class="selection-box" id="selectedResourceBox">
+                        <div class="box-label">Resource</div>
+                        <div class="box-value empty" id="selectedResourceText">None selected</div>
+                    </div>
+                </div>
+
+                <div class="assign-row">
+                    <div>
+                        <label>Quantity</label>
+                        <input type="number" id="assignQty" min="1" value="1">
+                    </div>
+                    <button class="btn-assign" id="assignBtn" onclick="createAssignment()">Assign</button>
+                    <button class="btn-clear" onclick="clearSelection()">Clear</button>
+                </div>
+                <p id="assignMsg"></p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="panel-tabs">
+                <button class="panel-tab active" onclick="switchTab('requests')">Aid Requests</button>
+                <button class="panel-tab" onclick="switchTab('resources')">Resources</button>
+                <button class="panel-tab" onclick="switchTab('assignments')">Assignments</button>
+            </div>
+
+            <div class="panel-content" id="panelContent">
+                <p class="loading">Loading...</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="operator.js"></script>
+
+</body>
+
+</html>

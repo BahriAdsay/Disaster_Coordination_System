@@ -1,0 +1,215 @@
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            background-color: #c0392b;
+            color: white;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 { font-size: 18px; }
+        .navbar span { font-size: 13px; opacity: .85; }
+        .btn-logout {
+            background: rgba(255,255,255,.2);
+            border: 1px solid rgba(255,255,255,.4);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .btn-logout:hover { background: rgba(255,255,255,.3); }
+
+        /* ── Layout ── */
+        .layout {
+            display: flex;
+            gap: 20px;
+            padding: 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ── Left: Form ── */
+        .form-panel {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+            padding: 24px;
+        }
+        .form-panel h2 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c0392b;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 4px;
+            margin-top: 14px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 9px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #c0392b;
+        }
+        textarea { resize: vertical; min-height: 80px; }
+
+        .row-2 { display: flex; gap: 12px; }
+        .row-2 > div { flex: 1; }
+
+        .btn-submit {
+            width: 100%;
+            margin-top: 20px;
+            padding: 11px;
+            background-color: #c0392b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .btn-submit:hover { background-color: #a93226; }
+        .btn-submit:disabled { background-color: #ccc; cursor: not-allowed; }
+
+        #formMsg {
+            margin-top: 12px;
+            font-size: 13px;
+            text-align: center;
+        }
+        .success { color: green; }
+        .error   { color: red; }
+
+        /* ── Right: My Requests ── */
+        .requests-panel {
+            width: 360px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,.08);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+        .requests-panel h2 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2c6fad;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-refresh {
+            background: none;
+            border: 1px solid #2c6fad;
+            color: #2c6fad;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .btn-refresh:hover { background: #2c6fad; color: white; }
+
+        .request-list { flex: 1; overflow-y: auto; max-height: 520px; }
+
+        .request-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 10px;
+            font-size: 13px;
+        }
+        .request-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        .request-category {
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+
+        /* urgency badge */
+        .badge {
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge-low      { background: #e8f5e9; color: #2e7d32; }
+        .badge-medium   { background: #fff8e1; color: #f57f17; }
+        .badge-high     { background: #fff3e0; color: #e65100; }
+        .badge-critical { background: #fce4ec; color: #c62828; }
+
+        .request-detail { color: #666; margin-bottom: 4px; }
+        .request-desc   { color: #888; font-style: italic; margin-top: 4px; }
+
+        /* status badge */
+        .status-badge {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+        .status-pending     { background: #e3f2fd; color: #1565c0; }
+        .status-in_progress { background: #fff8e1; color: #f57f17; }
+        .status-completed   { background: #e8f5e9; color: #2e7d32; }
+        .status-cancelled   { background: #f5f5f5; color: #757575; }
+
+        .no-requests {
+            text-align: center;
+            color: #aaa;
+            font-size: 13px;
+            margin-top: 40px;
+        }
+
+        .loading { text-align: center; color: #aaa; font-size: 13px; padding: 20px; }
+
+        .assignment-row {
+            margin-top: 8px;
+            border-top: 1px dashed #eee;
+            padding-top: 8px;
+        }
+        .assignment-row-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #aaa;
+            margin-bottom: 6px;
+        }
+        .assignment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #555;
+        }

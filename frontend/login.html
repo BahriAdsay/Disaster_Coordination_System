@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNo2 - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>PNo2</h2>
+    <p class="subtitle">Disaster Coordination System</p>
+
+    <div class="tab-buttons">
+        <button class="tab-btn active" id="loginTab" onclick="switchAuth('login')">Login</button>
+        <button class="tab-btn" id="registerTab" onclick="switchAuth('register')">Register</button>
+    </div>
+
+    <form id="authForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+
+        <div id="roleField" style="display:none;">
+            <label for="role">Role</label>
+            <select id="role" onchange="handleRoleChange()">
+                <option value="victim">Victim</option>
+                <option value="volunteer">Volunteer</option>
+                <option value="operator">Operator</option>
+            </select>
+        </div>
+
+        <div id="operatorCodeField">
+            <label for="operatorCode">Operator Code</label>
+            <input type="text" id="operatorCode" placeholder="Enter your operator code">
+        </div>
+
+        <button type="submit" id="submitBtn">Login</button>
+    </form>
+
+    <p id="msg"></p>
+</div>
+
+<script src="login.js"></script>
+
+</body>
+</html>

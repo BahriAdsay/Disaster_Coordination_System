@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNo2 - Volunteer Portal</title>
+    <link rel="stylesheet" href="volunteer.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>PNo2 - Disaster Coordination</h1>
+    <span id="welcomeMsg"></span>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+</div>
+
+<div class="layout">
+
+    <!-- Left: Resource Form -->
+    <div class="form-panel">
+        <h2>Add Available Resource</h2>
+
+        <form id="resourceForm">
+            <label for="category">Category</label>
+            <select id="category" required>
+                <option value="">Select...</option>
+                <option value="food">Food</option>
+                <option value="water">Water</option>
+                <option value="medicine">Medicine</option>
+                <option value="shelter">Shelter</option>
+            </select>
+
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" min="1" value="1" required>
+       
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Describe the resource..."></textarea>
+
+            <label>Location</label>
+            <div id="locationBox" style="border:1px solid #ccc; border-radius:5px; padding:10px; background:#f9f9f9; font-size:13px; color:#555;">
+                Location not detected yet.
+                <button type="button" onclick="getLocation()" style="margin-left:10px; padding:4px 12px; background:#27ae60; color:white; border:none; border-radius:4px; cursor:pointer; font-size:12px;">Get My Location</button>
+            </div>
+            <input type="hidden" id="zone">
+            <input type="hidden" id="lat">
+            <input type="hidden" id="lng">
+
+            <button type="submit" class="btn-submit" id="submitBtn">Submit Resource</button>
+        </form>
+
+        <p id="formMsg"></p>
+    </div>
+
+    <!-- Right: My Resources & Assignments -->
+    <div class="resources-panel">
+        <div class="panel-tabs">
+            <button class="panel-tab active" id="tabResources" onclick="switchTab('resources')">My Resources</button>
+            <button class="panel-tab" id="tabAssignments" onclick="switchTab('assignments')">My Assignments</button>
+        </div>
+        <div id="panelContent">
+            <p class="loading">Loading...</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="volunteer.js"></script>
+
+</body>
+</html>
